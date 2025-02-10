@@ -39,6 +39,7 @@
             listView1 = new ListView();
             button1 = new Button();
             label5 = new Label();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -111,7 +112,7 @@
             // 
             listView1.Location = new Point(334, 35);
             listView1.Name = "listView1";
-            listView1.Size = new Size(263, 279);
+            listView1.Size = new Size(263, 246);
             listView1.TabIndex = 8;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -134,11 +135,22 @@
             label5.TabIndex = 10;
             label5.Text = "Список пользователей";
             // 
+            // button2
+            // 
+            button2.Location = new Point(438, 287);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 11;
+            button2.Text = "Очистить";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(627, 319);
+            Controls.Add(button2);
             Controls.Add(label5);
             Controls.Add(button1);
             Controls.Add(listView1);
@@ -169,5 +181,6 @@
         private ListView listView1;
         private Button button1;
         private Label label5;
+        private Button button2;
     }
 }

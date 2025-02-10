@@ -2,39 +2,6 @@ using System.Text.Json;
 
 namespace AsyncFormList
 {
-    [Serializable]
-    public struct Student
-    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public int Age { get; set; }
-        public string Group { get; set; }
-
-        public Student(string name, string surname, int age, string group)
-        {
-            Name = name;
-            Surname = surname;
-            Age = age;
-            Group = group;
-        }
-    }
-
-    [Serializable]
-    public class ListOfStudents
-    {
-        public List<Student> Students { get; set; } = new List<Student>();
-
-        public void AddStudent(Student student)
-        {
-            Students.Add(student);
-        }
-
-        public Student GetYoungest()
-        {
-            return Students.OrderBy(stud => stud.Age).FirstOrDefault();
-        }
-
-    }
 
     public partial class Form1 : Form
     {
@@ -60,7 +27,7 @@ namespace AsyncFormList
         }
         private void CreateListView()
         {
-            listView1.View = View.Details; 
+            listView1.View = View.Details;
             listView1.Columns.Add("Имя", 60);
             listView1.Columns.Add("Фамилия", 60);
             listView1.Columns.Add("Возраст", 60);
@@ -103,6 +70,8 @@ namespace AsyncFormList
                 try
                 {
                     var json = await File.ReadAllTextAsync(path);
+                    if (string.IsNullOrEmpty(json))
+                        return;
                     listOfStudents = JsonSerializer.Deserialize<ListOfStudents>(json) ?? new ListOfStudents();
                     DisplayOnListView(listOfStudents);
                 }
@@ -134,5 +103,59 @@ namespace AsyncFormList
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.Items.Count == 0) return;
+
+            listView1.Items.Clear();
+
+            listOfStudents.Clear();
+
+            File.WriteAllText(path, string.Empty);
+
+            MessageBox.Show("All students have been cleared.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
+
+    [Serializable]
+    public struct Student
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int Age { get; set; }
+        public string Group { get; set; }
+
+        public Student(string name, string surname, int age, string group)
+        {
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Group = group;
+        }
+    }
+
+    [Serializable]
+    public class ListOfStudents
+    {
+        public List<Student> Students { get; set; } = new List<Student>();
+
+        public void AddStudent(Student student)
+        {
+            Students.Add(student);
+        }
+
+        public void Clear()
+        {
+            Students.Clear();
+        }
+
+        public Student GetYoungest()
+        {
+            return Students.OrderBy(stud => stud.Age).FirstOrDefault();
+        }
+
+    }
+
 }
