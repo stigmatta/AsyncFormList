@@ -25,10 +25,10 @@ namespace AsyncFormList
         private void CreateListView()
         {
             listView1.View = View.Details;
-            listView1.Columns.Add("Èìÿ", 60);
-            listView1.Columns.Add("Ôàìèëèÿ", 60);
-            listView1.Columns.Add("Âîçðàñò", 60);
-            listView1.Columns.Add("Ãðóïïà", 60);
+            listView1.Columns.Add("Name", 60);
+            listView1.Columns.Add("Surname", 60);
+            listView1.Columns.Add("Age", 60);
+            listView1.Columns.Add("Group", 60);
         }
 
 
