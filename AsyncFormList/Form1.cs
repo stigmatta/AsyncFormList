@@ -5,15 +5,12 @@ namespace AsyncFormList
 
     public partial class Form1 : Form
     {
-        private SynchronizationContext sC = null;
         private string path = "students.json";
         private ListOfStudents listOfStudents = new ListOfStudents();
 
         public Form1()
         {
             InitializeComponent();
-            sC = SynchronizationContext.Current;
-
             CreateListView();
             LoadStudents();
         }
@@ -28,10 +25,10 @@ namespace AsyncFormList
         private void CreateListView()
         {
             listView1.View = View.Details;
-            listView1.Columns.Add("Имя", 60);
-            listView1.Columns.Add("Фамилия", 60);
-            listView1.Columns.Add("Возраст", 60);
-            listView1.Columns.Add("Группа", 60);
+            listView1.Columns.Add("Г€Г¬Гї", 60);
+            listView1.Columns.Add("Г”Г Г¬ГЁГ«ГЁГї", 60);
+            listView1.Columns.Add("Г‚Г®Г§Г°Г Г±ГІ", 60);
+            listView1.Columns.Add("ГѓГ°ГіГЇГЇГ ", 60);
         }
 
 
